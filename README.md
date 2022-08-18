@@ -3,7 +3,7 @@ Formatter for [structured logging](https://cloud.google.com/logging/docs/structu
 
 # Installing
 ```
-pip install structured-logger
+pip install google-cloud-structured-logger
 ```
 
 # Usage
