@@ -1,38 +1,42 @@
 # Structured Logger
+
 Formatter for [structured logging](https://cloud.google.com/logging/docs/structured-logging) in Google Cloud.
 
 # Installing
+
 ```
 pip install google-cloud-structured-logger
 ```
 
 # Usage
+
 ```python
 import logging
-from structuredlogger import stlogger
+from gcstructuredlogger import structuredlogger
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 log_handler = logging.StreamHandler()
-formatter = stlogger.StructuredJsonFormatter()
+formatter = structuredlogger.StructuredJsonFormatter()
 log_handler.setFormatter(formatter)
 log_handler.setLevel(logging.DEBUG)
 logger.addHandler(log_handler)
 ```
 
 ## Dict config example
+
 ```python
 import logging.config
 
-from structuredlogger import stlogger
+from gcstructuredlogger import structuredlogger
 
 LOGGING_CONFIG = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
         "structured_json": {
-            "()": stlogger.StructuredJsonFormatter
+            "()": structuredlogger.StructuredJsonFormatter
         }
     },
     "handlers": {
@@ -52,16 +56,16 @@ LOGGING_CONFIG = {
 logging.config.dictConfig(LOGGING_CONFIG)
 ```
 
-
 ## Features
+
 - `severity` is set to the same level as the log
 - Send log to Error Reporting if log level is `ERROR`, `CRITICAL`, or `FATAL`
 - If `exc_info` is `True`, the stack trace is set to `stack_trace`
 
-
-
 ## Log example
+
 `main.py`:
+
 ```python
 logger.debug("debug")
 logger.info("info", extra={"foo": "bar"})
@@ -76,6 +80,7 @@ except Exception as e:
 ```
 
 Output:
+
 ```
 {"message": "debug", "timestamp": "2022-08-18T12:55:52.064302", "severity": "DEBUG"}
 {"message": "info", "foo": "bar", "timestamp": "2022-08-18T12:55:52.064358", "severity": "INFO"}
@@ -86,6 +91,7 @@ Output:
 ```
 
 ### Logs displayed in Google Cloud
+
 Cloud Function:
 ![cloud_function_logs](./images/cloud_function_logs.png)
 
