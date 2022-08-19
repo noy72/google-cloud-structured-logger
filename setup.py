@@ -6,7 +6,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="google-cloud-structured-logger",
-    version="0.1.0",
+    version="0.1.1",
     url="https://github.com/noy72/google-cloud-structured-logger",
     license="BSD",
     description="A Python library adding a structured log formatter for Google Cloud",
